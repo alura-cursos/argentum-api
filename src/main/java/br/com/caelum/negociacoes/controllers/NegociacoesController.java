@@ -43,8 +43,6 @@ public class NegociacoesController {
 		gerenciadorDeNegociacao.filtraNegociacoes(negociacoes, gerenciadorDeData);
 
 		gerenciadorDeNegociacao.setQuantidade(gerenciadorDeNegociacao.getNegociacoes().size());
-		
-		System.out.println(negociacoes.size());
 
 		return gerenciadorDeNegociacao;
 	}

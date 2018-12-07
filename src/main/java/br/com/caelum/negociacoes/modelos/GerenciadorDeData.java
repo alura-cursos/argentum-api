@@ -22,7 +22,6 @@ public class GerenciadorDeData {
 
 	@PostConstruct
 	private void init() {
-		System.out.println("Passei");
 		this.dataInicial.set(1900, 0, 1);
 		this.dataFinal.set(3000, 0, 1);
 	}
