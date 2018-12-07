@@ -1,0 +1,18 @@
+*.class
+
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+target/
+
+**/.project
+**/.classpath
+**/.settings/
+blog/bin/
+**/.tern-project
+
+hs_err_pid*
