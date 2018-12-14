@@ -1,6 +1,5 @@
 package br.com.caelum.negociacoes.modelos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,26 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Component
-public class GerenciadorDeNegociacao implements Serializable{
+public class GerenciadorDeNegociacao{
 
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Autowired
 	@Qualifier(value = "negociacoes")
-	@JsonDeserialize
 	private ArrayList<Negociacao> negociacoes;
 	
 	private Integer quantidade;
-	
-	@JsonDeserialize
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -35,8 +28,7 @@ public class GerenciadorDeNegociacao implements Serializable{
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-
-	@JsonSerialize
+	
 	public ArrayList<Negociacao> getNegociacoes() {
 		return negociacoes;
 	}
@@ -61,6 +53,21 @@ public class GerenciadorDeNegociacao implements Serializable{
 		this.negociacoes.clear();
 		this.quantidade = 0;
 	}
+	
+	@Override
+    public String toString() {
+    	ObjectMapper mapper = new ObjectMapper();
+    	
+    	String jsonString = "";
+		try {
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			jsonString = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+    	return jsonString;
+    }
 
 	
 	

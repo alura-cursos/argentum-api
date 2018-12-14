@@ -8,10 +8,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.negociacoes.indicadores.Indicador;
 import br.com.caelum.negociacoes.modelos.Candle;
@@ -23,7 +23,7 @@ import br.com.caelum.negociacoes.modelos.Negociacao;
 import br.com.caelum.negociacoes.modelos.SerieTemporal;
 import br.com.caelum.negociacoes.ws.ClienteWebService;
 
-@Controller
+@RestController
 public class SerieTemporalController {
 
 	@Autowired
@@ -57,7 +57,7 @@ public class SerieTemporalController {
 		gerenciadorDeNegociacao.filtraNegociacoes(negociacoes, gerenciadorDeData);
 
 		gerenciadorDeNegociacao.setQuantidade(gerenciadorDeNegociacao.getNegociacoes().size());
-
+		
 		
 		List<Candle> candles = new CandlestickFactory().constroiCandles(gerenciadorDeNegociacao.getNegociacoes());
 		SerieTemporal serie = new SerieTemporal(candles);

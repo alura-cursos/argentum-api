@@ -3,12 +3,16 @@ package br.com.caelum.negociacoes.modelos;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public final class Negociacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private final double preco;
 	private final int quantidade;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private final Calendar data;
 
 	public Negociacao(double preco, int quantidade, Calendar data) {
